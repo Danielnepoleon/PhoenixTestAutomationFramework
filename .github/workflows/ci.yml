@@ -1,15 +1,16 @@
 name: Phoenix Test Automation Workflow
 
+permissions:
+  contents: write
+  id-token: write
+  security-events: write
+  actions: read
+  
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-permissions:
-  contents: read
-  id-token: write
-  security-events: write
-  actions: read
   
 jobs:
   test:
