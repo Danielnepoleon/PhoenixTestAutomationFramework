@@ -12,7 +12,16 @@ on:
   pull_request:
     branches: [ "master" ]
   schedule:
-    - cron: "09 03 * * *"
+    - cron: "17 03 * * *"
+  workflow_dispatch:
+    inputs: 
+     env:
+      description: Environment
+      type: choice
+      options: [dev,qa,uat,prod]
+      default: qa
+      required: true
+      
   
 jobs:
   test:
@@ -30,7 +39,7 @@ jobs:
         cache: maven
         
     - name: Execute Test Automation 
-      run: mvn clean test -DsuiteXmlFile=testng.xml -Denv=qa
+      run: mvn clean test -DsuiteXmlFile=testng.xml -Denv=$"{{ github.event.inputs.env }}"
       
     - name: Upload a Build Artifact
       if : always()
