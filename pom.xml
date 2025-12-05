@@ -20,7 +20,7 @@
         <version>3.5.4</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>${suite}</suiteXmlFile>
+            <suiteXmlFile>${suiteXMLFile}</suiteXmlFile>
           </suiteXmlFiles>
         </configuration>
       </plugin>
