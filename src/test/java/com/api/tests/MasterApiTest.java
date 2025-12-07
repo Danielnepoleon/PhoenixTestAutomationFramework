@@ -9,16 +9,17 @@ import static org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
 
 import static com.api.constants.Role.*;
+
+import com.api.constants.Role;
 import com.api.utils.AuthTokenGenerator;
+import com.api.utils.SpecUtils;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class MasterApiTest {
 	@Test
 	public void masterApiTest() throws IOException {
-		given().baseUri(getProperty("BASE_URI")).and().header("Authorization", AuthTokenGenerator.getToken(FD)).and().contentType("").and()
-				.log().all().when().post("/master").then().log().body().and().statusCode(200).and()
-				.time(lessThan(1000L)).body("message", equalTo("Success")).and().body("data", notNullValue()).and()
+		given().spec(SpecUtils.requestSpecWithAuth(Role.FD)).when().post("/master").then().spec(SpecUtils.responseSpec()).body("message", equalTo("Success")).and().body("data", notNullValue()).and()
 				.body("data", hasKey("mst_oem")).and().body("$", hasKey("message"))
 				.body("data.mst_oem.size()", greaterThan(0))
 				.and().body("data.mst_model.size()", greaterThan(0))
@@ -28,8 +29,8 @@ public class MasterApiTest {
 	
 	@Test
 	public void masterApi_InvalidToken_Test() throws IOException {
-		given().baseUri(getProperty("BASE_URI")).and().header("Authorization", "3425gdhsdbsj").and().contentType("").and()
-				.log().all().when().post("/master").then().log().body().and().statusCode(500);
+		given().baseUri(getProperty("BASE_URI")).and().header("Authorization", "3425gdhsdbsj").and()
+				.log().all().when().post("/master").then().spec(SpecUtils.responseSpecWithStatusCheck(500));
 	}
 
 }
