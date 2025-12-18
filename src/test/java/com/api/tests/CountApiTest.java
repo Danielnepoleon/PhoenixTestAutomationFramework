@@ -31,7 +31,7 @@ public class CountApiTest {
 
 	@Test
 	public void countApiTestwithoutHeader() {
-		given().spec(SpecUtils.requestSpec()).and()
+		given().spec(SpecUtils.requestSpecWithoutAuth()).and()
 		.when().get("/dashboard/count").then().spec(SpecUtils.responseSpecWithStatusCheck(401));
 	}
 }

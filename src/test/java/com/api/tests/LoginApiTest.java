@@ -9,7 +9,7 @@ import java.io.IOException;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
-import com.api.pojo.Usercredentials;
+import com.api.request.model.Usercredentials;
 import com.api.utils.SpecUtils;
 
 import static com.api.utils.ConfigManager.*;
