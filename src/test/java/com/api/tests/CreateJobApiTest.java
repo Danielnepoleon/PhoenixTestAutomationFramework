@@ -1,6 +1,13 @@
 package com.api.tests;
 
-import static org.hamcrest.Matchers.*;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.startsWith;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
@@ -9,18 +16,10 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
-import com.api.utils.AuthTokenGenerator;
-import com.api.utils.ConfigManager;
+import static com.api.utils.DateTimeUtil.*;
 import com.api.utils.SpecUtils;
 
-import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
-
-import static io.restassured.RestAssured.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CreateJobApiTest {
 	
@@ -28,7 +27,7 @@ public class CreateJobApiTest {
 	public void createJobApiTest() throws IOException {
 		
 		CustomerAddress customerAddress = new CustomerAddress("6b", "apart", "Thisara perera", "cbi office", "puluk", "621232", "India", "Bihar");
-		CustomerProduct customerProduct = new CustomerProduct("2025-09-30T18:30:00.000Z", "10192371917300","10132371017301", "10132371817302", "2025-09-30T18:30:00.000Z", 1, 2);
+		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "10192371917300","10132371017301", "10132371817302", getTimeWithDaysAgo(10), 1, 2);
 		Problems problems = new Problems(1, "Poor battery");
 		List<Problems> problemsList = new ArrayList<>();
 		problemsList.add(problems);
