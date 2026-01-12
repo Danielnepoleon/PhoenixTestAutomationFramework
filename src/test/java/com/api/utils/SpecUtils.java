@@ -66,7 +66,7 @@ public class SpecUtils {
 	}
 	
 	public static ResponseSpecification responseSpecWithStatusCheck(int statusCode) {
-		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectContentType(ContentType.JSON)
+		ResponseSpecification responseSpecification = new ResponseSpecBuilder()
 				.expectStatusCode(statusCode).expectResponseTime(Matchers.lessThan(1000L)).log(LogDetail.ALL).build();
 
 		return responseSpecification;

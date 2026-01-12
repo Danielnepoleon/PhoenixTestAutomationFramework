@@ -25,7 +25,7 @@ public class LoginApiTest {
 
 	@Test(description = "Verify if login api is working for user FD", groups = { "api", "regression", "smoke" })
 	public void loginApiTest() throws IOException {
-		given().spec(requestSpecWithAuth(Role.FD)).when().post("login").then().log().all().spec(responseSpec()).and()
+		given().spec(requestSpecWithoutAuth()).body(credentials).when().post("login").then().log().all().spec(responseSpec()).and()
 				.body("message", equalTo("Success")).and().body("data.token", notNullValue()).and()
 				.body(matchesJsonSchemaInClasspath("response-schema/LoginApiSchema.json"));
 	}

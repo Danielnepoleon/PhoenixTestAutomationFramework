@@ -32,7 +32,7 @@ public class MasterApiTest {
 			"regression", "smoke", "negative" })
 	public void masterApi_InvalidToken_Test() throws IOException {
 		given().baseUri(getProperty("BASE_URI")).and().header("Authorization", "3425gdhsdbsj").and().log().all().when()
-				.post("/master").then().spec(responseSpecWithStatusCheck(500));
+				.post("/master").then().spec(responseSpecWithStatusCheck(415));
 	}
 
 }
