@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.hamcrest.Matchers;
 
 import com.api.constants.Role;
-import com.api.pojo.Usercredentials;
+import com.api.request.model.Usercredentials;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -16,7 +16,7 @@ import io.restassured.specification.ResponseSpecification;
 
 public class SpecUtils {
 
-	public static RequestSpecification requestSpec() {
+	public static RequestSpecification requestSpecWithoutAuth() {
 		RequestSpecification request = null;
 		try {
 			request = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
@@ -29,12 +29,12 @@ public class SpecUtils {
 
 		return request;
 	}
-
-	public static RequestSpecification requestSpec(Object payload) {
+	
+	public static RequestSpecification requestSpecWithAuth(Role role) {
 		RequestSpecification requestSpecification = null;
 		try {
 			requestSpecification = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
-					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(payload)
+					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", AuthTokenGenerator.getToken(role))
 					.log(LogDetail.URI).log(LogDetail.HEADERS).log(LogDetail.METHOD).log(LogDetail.BODY).build();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -44,11 +44,11 @@ public class SpecUtils {
 		return requestSpecification;
 	}
 	
-	public static RequestSpecification requestSpecWithAuth(Role role) {
+	public static RequestSpecification requestSpecWithAuthBody(Role role, Object payload) {
 		RequestSpecification requestSpecification = null;
 		try {
 			requestSpecification = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
-					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(AuthTokenGenerator.getToken(role))
+					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", AuthTokenGenerator.getToken(role)).setBody(payload)
 					.log(LogDetail.URI).log(LogDetail.HEADERS).log(LogDetail.METHOD).log(LogDetail.BODY).build();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

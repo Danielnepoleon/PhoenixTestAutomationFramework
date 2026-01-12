@@ -50,7 +50,6 @@ public class ConfigManager {
 	}
 
 	public static String getProperty(String key) throws IOException {
-
 		return prop.getProperty(key);
 	}
 
