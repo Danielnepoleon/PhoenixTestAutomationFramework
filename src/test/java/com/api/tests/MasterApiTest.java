@@ -20,7 +20,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*;
 public class MasterApiTest {
 	@Test(description = "Verify if the master api shows response correctly", groups = { "api", "regression", "smoke" })
 	public void masterApiTest() throws IOException {
-		given().spec(requestSpecWithAuth(Role.FD)).when().post("/master").then().spec(responseSpec())
+		given().spec(requestSpecWithAuth(Role.FD)).when().post("/master").then().spec(responseSpec_OK())
 				.body("message", equalTo("Success")).and().body("data", notNullValue()).and()
 				.body("data", hasKey("mst_oem")).and().body("$", hasKey("message"))
 				.body("data.mst_oem.size()", greaterThan(0)).and().body("data.mst_model.size()", greaterThan(0)).and()
@@ -32,7 +32,7 @@ public class MasterApiTest {
 			"regression", "smoke", "negative" })
 	public void masterApi_InvalidToken_Test() throws IOException {
 		given().baseUri(getProperty("BASE_URI")).and().header("Authorization", "3425gdhsdbsj").and().log().all().when()
-				.post("/master").then().spec(responseSpecWithStatusCheck(415));
+				.post("/master").then().spec(responseSpec_TEXT(415));
 	}
 
 }
