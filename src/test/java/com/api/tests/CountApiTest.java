@@ -20,7 +20,7 @@ public class CountApiTest {
 	@Test(description = "Verify if the count api shows response correctly", groups = { "api", "regression", "smoke" })
 	public void countApiTest() {
 		given().spec(requestSpecWithAuth(Role.FD)).when().get("/dashboard/count").then().log().body()
-				.spec(responseSpec()).body("message", equalTo("Success")).and().body("data", notNullValue()).and()
+				.spec(responseSpec_OK()).body("message", equalTo("Success")).and().body("data", notNullValue()).and()
 				.body("data.size()", greaterThanOrEqualTo(3)).and()
 				.body("data.count", everyItem(greaterThanOrEqualTo(0))).and()
 				.body("data.label", everyItem(not(blankOrNullString()))).and()
@@ -31,7 +31,7 @@ public class CountApiTest {
 	@Test(description = "Verify if count api gives correct status code for the invalid token", groups = { "api",
 			"regression", "smoke", "negative" })
 	public void countApiTestwithoutHeader() {
-		given().spec(requestSpecWithoutAuth()).and().when().get("/dashboard/count").then()
-				.spec(responseSpecWithStatusCheck(401));
+		given().spec(requestSpec()).and().when().get("/dashboard/count").then()
+				.spec(responseSpec_TEXT(401));
 	}
 }

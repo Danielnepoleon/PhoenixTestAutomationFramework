@@ -52,7 +52,7 @@ public class CreateJobApiTest {
 	@Test(description = "Verify if the create job api is able to create Inwarranty job", groups = { "api", "regression", "smoke" })
 	public void createJobApiTest() throws IOException {
 		given().spec(requestSpecWithAuthBody(Role.FD, createJobPayload)).when().post("/job/create").then()
-				.spec(responseSpec()).body(matchesJsonSchemaInClasspath("response-schema/CreateJobApiSchema.json"))
+				.spec(responseSpec_OK()).body(matchesJsonSchemaInClasspath("response-schema/CreateJobApiSchema.json"))
 				.body("message", equalTo("Job created successfully. ")).body("data.job_number", startsWith("JOB_"));
 
 	}
