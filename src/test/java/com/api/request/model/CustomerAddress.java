@@ -6,7 +6,7 @@ public record CustomerAddress (
 	String street_name,
 	String landmark,
 	String area,
-	String pincode,
+	int pincode,
 	String country,
 	String state){
 }
