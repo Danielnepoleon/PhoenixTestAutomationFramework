@@ -36,7 +36,7 @@ public class CreateJobApiTest {
 	@BeforeMethod(description = "Creating payload for create job API")
 	public void setUp() {
 		CustomerAddress customerAddress = new CustomerAddress("6b", "apart", "Thisara perera", "cbi office", "puluk",
-				"621232", "India", "Bihar");
+				621232, "India", "Bihar");
 		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "10102371917300",
 				"10102371017301", "10132371817302", getTimeWithDaysAgo(10), Products.NEXUS_2.getCode(),
 				Models.GALLEXY.getCode());
