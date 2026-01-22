@@ -9,6 +9,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import org.testng.annotations.Test;
 
+import com.api.request.model.Usercredentials;
 import com.dataproviders.DataProviderUtils;
 import com.dataproviders.api.bean.UserBean;
 
@@ -21,5 +22,15 @@ public class LoginApiDataDrivenTest {
 				.body("message", equalTo("Success")).and().body("data.token", notNullValue()).and()
 				.body(matchesJsonSchemaInClasspath("response-schema/LoginApiSchema.json"));
 	}
+	
+	@Test(description = "Verify if login api is working for user FD using json data", groups = { "api", "regression",
+	"smoke" }, dataProviderClass = DataProviderUtils.class, dataProvider = "LoginApiJsonDataProvider")
+public void loginApiJsonDataTest(Usercredentials userCredentials) {
+given().spec(requestSpec()).body(userCredentials).when().post("login").then().log().all().spec(responseSpec_OK()).and()
+		.body("message", equalTo("Success")).and().body("data.token", notNullValue()).and()
+		.body(matchesJsonSchemaInClasspath("response-schema/LoginApiSchema.json"));
+}
+	
+	
 
 }
