@@ -9,6 +9,54 @@ public class CreateJobBean {
 	private String mst_platform_id;
 	@CsvBindByName(column = "mst_warrenty_status_id")
 	private String mst_warrenty_status_id;
+	@CsvBindByName(column = "mst_oem_id")
+	private String mst_oem_id;
+	@CsvBindByName(column = "customer__first_name")
+	private String customer__first_name;
+	@CsvBindByName(column = "customer__last_name")
+	private String customer__last_name;
+	@CsvBindByName(column = "customer__mobile_number")
+	private String customer__mobile_number;
+	@CsvBindByName(column = "customer__mobile_number_alt")
+	private String customer__mobile_number_alt;
+	@CsvBindByName(column = "customer__email_id")
+	private String customer__email_id;
+	@CsvBindByName(column = "customer__email_id_alt")
+	private String customer__email_id_alt;
+	@CsvBindByName(column = "customer_address__flat_number")
+	private String customer_address__flat_number;
+	@CsvBindByName(column = "customer_address__apartment_name")
+	private String customer_address__apartment_name;
+	@CsvBindByName(column = "customer_address__street_name")
+	private String customer_address__street_name;
+	@CsvBindByName(column = "customer_address__landmark")
+	private String customer_address__landmark;
+	@CsvBindByName(column = "customer_address__area")
+	private String customer_address__area;
+	@CsvBindByName(column = "customer_address__country")
+	private String customer_address__pincode;
+	@CsvBindByName(column = "customer_address__country")
+	private String customer_address__country;
+	@CsvBindByName(column = "customer_address__state")
+	private String customer_address__state;
+	@CsvBindByName(column = "customer_product__dop")
+	private String customer_product__dop;
+	@CsvBindByName(column = "customer_product__serial_number")
+	private String customer_product__serial_number;
+	@CsvBindByName(column = "customer_product__imei1")
+	private String customer_product__imei1;
+	@CsvBindByName(column = "customer_product__imei2")
+	private String customer_product__imei2;
+	@CsvBindByName(column = "customer_product__popurl")
+	private String customer_product__popurl;
+	@CsvBindByName(column = "customer_product__product_id")
+	private String customer_product__product_id;
+	@CsvBindByName(column = "customer_product__mst_model_id")
+	private String customer_product__mst_model_id;
+	@CsvBindByName(column = "problems__id")
+	private String problems__id;
+	@CsvBindByName(column = "problems__remark")
+	private String problems__remark;
 
 	public String getMst_service_location_id() {
 		return mst_service_location_id;
@@ -225,55 +273,6 @@ public class CreateJobBean {
 	public void setProblems__remark(String problems__remark) {
 		this.problems__remark = problems__remark;
 	}
-
-	@CsvBindByName(column = "mst_oem_id")
-	private String mst_oem_id;
-	@CsvBindByName(column = "customer__first_name")
-	private String customer__first_name;
-	@CsvBindByName(column = "customer__last_name")
-	private String customer__last_name;
-	@CsvBindByName(column = "customer__mobile_number")
-	private String customer__mobile_number;
-	@CsvBindByName(column = "customer__mobile_number_alt")
-	private String customer__mobile_number_alt;
-	@CsvBindByName(column = "customer__email_id")
-	private String customer__email_id;
-	@CsvBindByName(column = "customer__email_id_alt")
-	private String customer__email_id_alt;
-	@CsvBindByName(column = "customer_address__flat_number")
-	private String customer_address__flat_number;
-	@CsvBindByName(column = "customer_address__apartment_name")
-	private String customer_address__apartment_name;
-	@CsvBindByName(column = "customer_address__street_name")
-	private String customer_address__street_name;
-	@CsvBindByName(column = "customer_address__landmark")
-	private String customer_address__landmark;
-	@CsvBindByName(column = "customer_address__area")
-	private String customer_address__area;
-	@CsvBindByName(column = "customer_address__country")
-	private String customer_address__pincode;
-	@CsvBindByName(column = "customer_address__country")
-	private String customer_address__country;
-	@CsvBindByName(column = "customer_address__state")
-	private String customer_address__state;
-	@CsvBindByName(column = "customer_product__dop")
-	private String customer_product__dop;
-	@CsvBindByName(column = "customer_product__serial_number")
-	private String customer_product__serial_number;
-	@CsvBindByName(column = "customer_product__imei1")
-	private String customer_product__imei1;
-	@CsvBindByName(column = "customer_product__imei2")
-	private String customer_product__imei2;
-	@CsvBindByName(column = "customer_product__popurl")
-	private String customer_product__popurl;
-	@CsvBindByName(column = "customer_product__product_id")
-	private String customer_product__product_id;
-	@CsvBindByName(column = "customer_product__mst_model_id")
-	private String customer_product__mst_model_id;
-	@CsvBindByName(column = "problems__id")
-	private String problems__id;
-	@CsvBindByName(column = "problems__remark")
-	private String problems__remark;
 
 	public CreateJobBean() {
 	}

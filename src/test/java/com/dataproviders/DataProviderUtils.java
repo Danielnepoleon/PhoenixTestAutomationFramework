@@ -50,4 +50,9 @@ public class DataProviderUtils {
 		Iterator<CreateJobPayload> payloadIterator = FakerDataGenerator.generateFakeCreateJobData(invocationCount);
 		return payloadIterator;
 	}
+	
+	@DataProvider(name = "CreateJobApiJsonDataProvider", parallel = true)
+	public static Iterator<CreateJobPayload> createJobApiJsonDataProvider() {
+		return JsonReaderUtil.loadJson("testData/CreateJobApiJsonData.json", CreateJobPayload[].class);
+	}
 }

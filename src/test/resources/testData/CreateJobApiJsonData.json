@@ -1,0 +1,119 @@
+[
+	{
+	    "mst_service_location_id": 0,
+	    "mst_platform_id": 2,
+	    "mst_warrenty_status_id": 1,
+	    "mst_oem_id": 1,
+	    "customer": {
+	        "first_name": "Danta",
+	        "last_name": "naka",
+	        "mobile_number": "8989898989",
+	        "mobile_number_alt": "",
+	        "email_id": "wer@gmail.com",
+	        "email_id_alt": ""
+	    },
+	    "customer_address": {
+	        "flat_number": "6b",
+	        "apartment_name": "apart",
+	        "street_name": "kusal perera",
+	        "landmark": "cbi office",
+	        "area": "puluk",
+	        "pincode": "621232",
+	        "country": "India",
+	        "state": "Bihar"
+	    },
+	    "customer_product": {
+	        "dop": "2025-09-30T18:30:00.000Z",
+	        "serial_number": "11130269152405",
+	        "imei1": "11130269152405",
+	        "imei2": "11130269152405",
+	        "popurl": "2025-09-30T18:30:00.000Z",
+	        "product_id": 1,
+	        "mst_model_id": 2
+	    },
+	    "problems": [
+	        {
+	            "id": 2,
+	            "remark": "Poor battery"
+	        }
+	    ]
+	},
+	{
+	    "mst_service_location_id": 0,
+	    "mst_platform_id": 2,
+	    "mst_warrenty_status_id": 1,
+	    "mst_oem_id": 1,
+	    "customer": {
+	        "first_name": "Danta",
+	        "last_name": "naka",
+	        "mobile_number": "8989898989",
+	        "mobile_number_alt": "",
+	        "email_id": "wer@gmail.com",
+	        "email_id_alt": ""
+	    },
+	    "customer_address": {
+	        "flat_number": "6b",
+	        "apartment_name": "apart",
+	        "street_name": "kusal perera",
+	        "landmark": "cbi office",
+	        "area": "puluk",
+	        "pincode": "621232",
+	        "country": "India",
+	        "state": "Bihar"
+	    },
+	    "customer_product": {
+	        "dop": "2025-09-30T18:30:00.000Z",
+	        "serial_number": "11230269152405",
+	        "imei1": "11230269152405",
+	        "imei2": "11230269152405",
+	        "popurl": "2025-09-30T18:30:00.000Z",
+	        "product_id": 1,
+	        "mst_model_id": 2
+	    },
+	    "problems": [
+	        {
+	            "id": 2,
+	            "remark": "Poor battery"
+	        }
+	    ]
+	},
+	{
+	    "mst_service_location_id": 0,
+	    "mst_platform_id": 2,
+	    "mst_warrenty_status_id": 1,
+	    "mst_oem_id": 1,
+	    "customer": {
+	        "first_name": "Danta",
+	        "last_name": "naka",
+	        "mobile_number": "8989898989",
+	        "mobile_number_alt": "",
+	        "email_id": "wer@gmail.com",
+	        "email_id_alt": ""
+	    },
+	    "customer_address": {
+	        "flat_number": "6b",
+	        "apartment_name": "apart",
+	        "street_name": "kusal perera",
+	        "landmark": "cbi office",
+	        "area": "puluk",
+	        "pincode": "621232",
+	        "country": "India",
+	        "state": "Bihar"
+	    },
+	    "customer_product": {
+	        "dop": "2025-09-30T18:30:00.000Z",
+	        "serial_number": "11330269152405",
+	        "imei1": "11330269152405",
+	        "imei2": "11330269152405",
+	        "popurl": "2025-09-30T18:30:00.000Z",
+	        "product_id": 1,
+	        "mst_model_id": 2
+	    },
+	    "problems": [
+	        {
+	            "id": 2,
+	            "remark": "Poor battery"
+	        }
+	    ]
+	}
+]
