@@ -18,7 +18,7 @@ import com.dataproviders.DataProviderUtils;
 public class CreateJobApiFakerDataDrivenTest {
 
 	@Test(description = "Verify if the create job api is able to create Inwarranty job", groups = { "api", "regression",
-			"smoke" }, dataProviderClass = DataProviderUtils.class , dataProvider = "CreateJobApiFakeDataProvider")
+			"smoke" , "faker"}, dataProviderClass = DataProviderUtils.class , dataProvider = "CreateJobApiFakeDataProvider")
 	public void createJobApiTest(CreateJobPayload payload) throws IOException {
 		given().spec(requestSpecWithAuthBody(Role.FD, payload)).when().post("/job/create").then()
 				.spec(responseSpec_OK()).body(matchesJsonSchemaInClasspath("response-schema/CreateJobApiSchema.json"))
