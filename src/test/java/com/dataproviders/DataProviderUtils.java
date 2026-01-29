@@ -10,6 +10,8 @@ import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Usercredentials;
 import com.api.utils.CreateJobBeanMapper;
 import com.api.utils.CsvReaderUtil;
+import com.api.utils.ExcelReaderPoijiUtil;
+import com.api.utils.ExcelReaderUtil;
 import com.api.utils.FakerDataGenerator;
 import com.api.utils.JsonReaderUtil;
 import com.dataproviders.api.bean.CreateJobBean;
@@ -21,10 +23,20 @@ public class DataProviderUtils {
 	public static Iterator<UserBean> loginApiDataProvider() {
 		return CsvReaderUtil.loadCsv("testData/LoginCreds.csv", UserBean.class);
 	}
-	
+
 	@DataProvider(name = "LoginApiJsonDataProvider", parallel = true)
 	public static Iterator<Usercredentials> loginApiJsonDataProvider() {
 		return JsonReaderUtil.loadJson("testData/LoginApiData.json", Usercredentials[].class);
+	}
+
+	@DataProvider(name = "LoginApiExcelDataProvider", parallel = true)
+	public static Iterator<Usercredentials> loginApiExcelDataProvider() {
+		return ExcelReaderUtil.loadExcelTestData("testData/LoginApiExcelData.xlsx", "Login Cred");
+	}
+
+	@DataProvider(name = "LoginApiExcelPoijiDataProvider", parallel = true)
+	public static Iterator<UserBean> loginApiExcelPoijiDataProvider() {
+		return ExcelReaderPoijiUtil.loadExcelTestData("testData/LoginApiExcelData.xlsx", "Login Cred", UserBean.class);
 	}
 
 	@DataProvider(name = "CreateJobDataProvider", parallel = true)
@@ -50,9 +62,25 @@ public class DataProviderUtils {
 		Iterator<CreateJobPayload> payloadIterator = FakerDataGenerator.generateFakeCreateJobData(invocationCount);
 		return payloadIterator;
 	}
-	
+
 	@DataProvider(name = "CreateJobApiJsonDataProvider", parallel = true)
 	public static Iterator<CreateJobPayload> createJobApiJsonDataProvider() {
 		return JsonReaderUtil.loadJson("testData/CreateJobApiJsonData.json", CreateJobPayload[].class);
+	}
+
+	@DataProvider(name = "CreateJobDataApiPoijiProvider", parallel = true)
+	public static Iterator<CreateJobPayload> createJobApiPoijiDataProvider() {
+
+		Iterator<CreateJobBean> createJobBeanIterator = ExcelReaderPoijiUtil.loadExcelTestData("testData/PhoenixTestData.xlsx", "CreateJobTestData", CreateJobBean.class);
+		List<CreateJobPayload> payloadList = new ArrayList<CreateJobPayload>();
+		CreateJobBean tempBean;
+		CreateJobPayload tempPayload;
+		while (createJobBeanIterator.hasNext()) {
+			tempBean = createJobBeanIterator.next();
+			tempPayload = CreateJobBeanMapper.mapper(tempBean);
+			payloadList.add(tempPayload);
+
+		}
+		return payloadList.iterator();
 	}
 }
