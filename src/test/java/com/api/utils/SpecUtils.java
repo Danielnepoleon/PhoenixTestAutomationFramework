@@ -1,7 +1,5 @@
 package com.api.utils;
 
-import java.io.IOException;
-
 import org.hamcrest.Matchers;
 
 import com.api.constants.Role;
@@ -17,58 +15,38 @@ public class SpecUtils {
 
 	public static RequestSpecification requestSpec() {
 		RequestSpecification request = null;
-		try {
-			request = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
-					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).log(LogDetail.URI)
-					.log(LogDetail.HEADERS).log(LogDetail.METHOD).log(LogDetail.BODY).build();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		request = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
+				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).log(LogDetail.URI).log(LogDetail.HEADERS)
+				.log(LogDetail.METHOD).log(LogDetail.BODY).build();
 
 		return request;
 	}
 
 	public static RequestSpecification requestSpec(Object payload) {
 		RequestSpecification requestSpecification = null;
-		try {
-			requestSpecification = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
-					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(payload).log(LogDetail.URI)
-					.log(LogDetail.HEADERS).log(LogDetail.METHOD).log(LogDetail.BODY).build();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		requestSpecification = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
+				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(payload).log(LogDetail.URI)
+				.log(LogDetail.HEADERS).log(LogDetail.METHOD).log(LogDetail.BODY).build();
 
 		return requestSpecification;
 	}
 
 	public static RequestSpecification requestSpecWithAuth(Role role) {
 		RequestSpecification requestSpecification = null;
-		try {
-			requestSpecification = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
-					.setContentType(ContentType.JSON).setAccept(ContentType.JSON)
-					.addHeader("Authorization", AuthTokenGenerator.getToken(role)).log(LogDetail.URI)
-					.log(LogDetail.HEADERS).log(LogDetail.METHOD).log(LogDetail.BODY).build();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		requestSpecification = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
+				.setContentType(ContentType.JSON).setAccept(ContentType.JSON)
+				.addHeader("Authorization", AuthTokenGenerator.getToken(role)).log(LogDetail.URI).log(LogDetail.HEADERS)
+				.log(LogDetail.METHOD).log(LogDetail.BODY).build();
 
 		return requestSpecification;
 	}
 
 	public static RequestSpecification requestSpecWithAuthBody(Role role, Object payload) {
 		RequestSpecification requestSpecification = null;
-		try {
-			requestSpecification = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
-					.setContentType(ContentType.JSON).setAccept(ContentType.JSON)
-					.addHeader("Authorization", AuthTokenGenerator.getToken(role)).setBody(payload).log(LogDetail.URI)
-					.log(LogDetail.HEADERS).log(LogDetail.METHOD).log(LogDetail.BODY).build();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		requestSpecification = new RequestSpecBuilder().setBaseUri(ConfigManager.getProperty("BASE_URI"))
+				.setContentType(ContentType.JSON).setAccept(ContentType.JSON)
+				.addHeader("Authorization", AuthTokenGenerator.getToken(role)).setBody(payload).log(LogDetail.URI)
+				.log(LogDetail.HEADERS).log(LogDetail.METHOD).log(LogDetail.BODY).build();
 
 		return requestSpecification;
 	}
