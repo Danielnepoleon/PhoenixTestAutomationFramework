@@ -10,8 +10,8 @@ public class CustomerDBModel {
 	private String last_name;
 	private String mobile_number;
 	private String mobile_number_alt;
-	private String email_id_alt;
 	private String email_id;
-	private String tr_customer_address_id;
+	private String email_id_alt;
+	private int tr_customer_address_id;
 
 }

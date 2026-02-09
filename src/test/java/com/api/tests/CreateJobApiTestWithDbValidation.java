@@ -29,20 +29,26 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
+import com.database.dao.CustomerProductDao;
+import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
+import com.database.model.CustomerProductDBModel;
 
 public class CreateJobApiTestWithDbValidation {
 
 	private CreateJobPayload createJobPayload;
 	private Customer customer;
+	private CustomerAddress customerAddress;
+	private CustomerProduct customerProduct;
 
 	@BeforeMethod(description = "Creating payload for create job API")
 	public void setUp() {
-		CustomerAddress customerAddress = new CustomerAddress("6b", "apart", "Thisara perera", "cbi office", "puluk",
-				621232, "India", "Bihar");
-		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "10000371917300",
-				"10000371017301", "10000031817302", getTimeWithDaysAgo(10), Products.NEXUS_2.getCode(),
+		customerAddress = new CustomerAddress("6b", "apart", "Thisara perera", "cbi office", "puluk", 621232, "India",
+				"Bihar");
+		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "10000671917300",
+				"10000671017301", "10000061817302", getTimeWithDaysAgo(10), Products.NEXUS_2.getCode(),
 				Models.GALLEXY.getCode());
 		Problems problems = new Problems(Problem.OVERHEATING.getCode(), "Poor battery");
 		List<Problems> problemsList = new ArrayList<>();
@@ -61,14 +67,38 @@ public class CreateJobApiTestWithDbValidation {
 				.body(matchesJsonSchemaInClasspath("response-schema/CreateJobApiSchema.json"))
 				.body("message", equalTo("Job created successfully. ")).body("data.job_number", startsWith("JOB_"))
 				.extract().body().jsonPath().getInt("data.tr_customer_id");
-		CustomerDBModel custdbm =  CustomerDao.getCustomerInfo(customerId);
+		CustomerDBModel customerDataFromDB = CustomerDao.getCustomerInfo(customerId);
 		System.out.println();
+
+		Assert.assertEquals(customer.first_name(), customerDataFromDB.getFirst_name());
+		Assert.assertEquals(customer.last_name(), customerDataFromDB.getLast_name());
+		Assert.assertEquals(customer.email_id(), customerDataFromDB.getEmail_id());
+		Assert.assertEquals(customer.email_id_alt(), customerDataFromDB.getEmail_id_alt());
+		Assert.assertEquals(customer.mobile_number(), customerDataFromDB.getMobile_number());
+		Assert.assertEquals(customer.mobile_number_alt(), customerDataFromDB.getMobile_number_alt());
+
+		CustomerAddressDBModel customerAddressDataFromDB = CustomerAddressDao
+				.getCustomerAdressData(customerDataFromDB.getTr_customer_address_id());
+		Assert.assertEquals(customerAddress.flat_number(), customerAddressDataFromDB.getFlat_number());
+		Assert.assertEquals(customerAddress.apartment_name(), customerAddressDataFromDB.getApartment_name());
+		Assert.assertEquals(customerAddress.street_name(), customerAddressDataFromDB.getStreet_name());
+		Assert.assertEquals(customerAddress.landmark(), customerAddressDataFromDB.getLandmark());
+		Assert.assertEquals(customerAddress.area(), customerAddressDataFromDB.getArea());
+		Assert.assertEquals(customerAddress.pincode(), customerAddressDataFromDB.getPincode());
+		Assert.assertEquals(customerAddress.country(), customerAddressDataFromDB.getCountry());
+		Assert.assertEquals(customerAddress.state(), customerAddressDataFromDB.getState());
 		
-		Assert.assertEquals(customer.first_name(), custdbm.getFirst_name());
-		Assert.assertEquals(customer.last_name(), custdbm.getLast_name());
-		Assert.assertEquals(customer.email_id(), custdbm.getEmail_id());
-		Assert.assertEquals(customer.email_id_alt(), custdbm.getEmail_id_alt());
-		Assert.assertEquals(customer.mobile_number(), custdbm.getMobile_number_alt());
+		CustomerProductDBModel customerProductDBModel = CustomerProductDao.getCustomerProductInfo(customerId);
+		
+		Assert.assertEquals(customerProduct.mst_model_id() , customerProductDBModel.getMst_model_id());
+		Assert.assertEquals(customerProduct.dop() , customerProductDBModel.getDop());
+		Assert.assertEquals(customerProduct.popurl() , customerProductDBModel.getPopurl());
+		Assert.assertEquals(customerProduct.imei1() , customerProductDBModel.getImei1());
+		Assert.assertEquals(customerProduct.imei2() , customerProductDBModel.getImei2());
+		Assert.assertEquals(customerProduct.serial_number() , customerProductDBModel.getSerial_number());
+		
+		
+
 	}
 
 }

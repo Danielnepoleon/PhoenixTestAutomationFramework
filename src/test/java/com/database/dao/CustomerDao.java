@@ -32,7 +32,7 @@ public class CustomerDao {
 				custDbm = new CustomerDBModel(resultset.getString("first_name"),
 						resultset.getString("last_name"), resultset.getString("mobile_number"),
 						resultset.getString("mobile_number_alt"), resultset.getString("email_id"),
-						resultset.getString("email_id_alt"), resultset.getString("tr_customer_address_id"));
+						resultset.getString("email_id_alt"), resultset.getInt("tr_customer_address_id"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
