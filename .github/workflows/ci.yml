@@ -24,7 +24,7 @@ on:
      suiteXmlFile: 
       description: TestNG XML FIle
       type: choice
-      options: [smoke,regression,testng.xml]
+      options: [smoke,regression,testng.xml,testng-data-driven.xml]
       default: testng.xml
       required : true
   
