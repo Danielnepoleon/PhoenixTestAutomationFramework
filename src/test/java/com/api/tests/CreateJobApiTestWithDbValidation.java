@@ -47,8 +47,8 @@ public class CreateJobApiTestWithDbValidation {
 	public void setUp() {
 		customerAddress = new CustomerAddress("6b", "apart", "Thisara perera", "cbi office", "puluk", 621232, "India",
 				"Bihar");
-		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "10000671917300",
-				"10000671017301", "10000061817302", getTimeWithDaysAgo(10), Products.NEXUS_2.getCode(),
+		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "10000871917300",
+				"10000871017301", "10000081817302", getTimeWithDaysAgo(10), Products.NEXUS_2.getCode(),
 				Models.GALLEXY.getCode());
 		Problems problems = new Problems(Problem.OVERHEATING.getCode(), "Poor battery");
 		List<Problems> problemsList = new ArrayList<>();
@@ -89,7 +89,7 @@ public class CreateJobApiTestWithDbValidation {
 		Assert.assertEquals(customerAddress.state(), customerAddressDataFromDB.getState());
 		
 		CustomerProductDBModel customerProductDBModel = CustomerProductDao.getCustomerProductInfo(customerId);
-		
+		System.out.println(customerProductDBModel);
 		Assert.assertEquals(customerProduct.mst_model_id() , customerProductDBModel.getMst_model_id());
 		Assert.assertEquals(customerProduct.dop() , customerProductDBModel.getDop());
 		Assert.assertEquals(customerProduct.popurl() , customerProductDBModel.getPopurl());
