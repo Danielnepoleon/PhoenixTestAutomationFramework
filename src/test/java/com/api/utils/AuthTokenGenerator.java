@@ -6,6 +6,9 @@ import static com.api.constants.Role.QC;
 import static com.api.constants.Role.SUP;
 import static io.restassured.RestAssured.given;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import com.api.constants.Role;
 import com.api.request.model.Usercredentials;
 
@@ -13,11 +16,16 @@ import io.restassured.http.ContentType;
 
 public class AuthTokenGenerator {
 
+	private static Map<Role , String> tokenCache = new ConcurrentHashMap<Role , String>();
 	private AuthTokenGenerator() {
 
 	}
 
 	public static String getToken(Role role) {
+		
+		if(tokenCache.containsKey(role)) {
+			return tokenCache.get(role);
+		}
 		Usercredentials credentials = null;
 		if (role == FD) {
 			credentials = new Usercredentials("iamfd", "password");
@@ -33,7 +41,7 @@ public class AuthTokenGenerator {
 		token = given().baseUri(ConfigManager.getProperty("BASE_URI")).contentType(ContentType.JSON).body(credentials)
 				.when().post("login").then().log().ifValidationFails().statusCode(200).extract().jsonPath()
 				.getString("data.token");
-
+		tokenCache.put(role, token);
 		return token;
 
 	}
