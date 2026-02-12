@@ -1,7 +1,8 @@
 package com.api.tests;
 
-import static com.api.utils.ConfigManager.getProperty;
-import static io.restassured.RestAssured.given;
+import static com.api.utils.SpecUtils.responseSpec_OK;
+import static com.api.utils.SpecUtils.responseSpec_TEXT;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.greaterThan;
@@ -10,19 +11,25 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import java.io.IOException;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
-import static com.api.utils.SpecUtils.*;
-
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
+import com.api.services.MasterService;
 
 public class MasterApiTest {
+
+	private MasterService masterService;
+
+	@BeforeMethod(description = "Setting up the master service reference")
+	public void setUp() {
+		masterService = new MasterService();
+	}
+
 	@Test(description = "Verify if the master api shows response correctly", groups = { "api", "regression", "smoke" })
 	public void masterApiTest() throws IOException {
-		given().spec(requestSpecWithAuth(Role.FD)).when().post("/master").then().spec(responseSpec_OK())
-				.body("message", equalTo("Success")).and().body("data", notNullValue()).and()
-				.body("data", hasKey("mst_oem")).and().body("$", hasKey("message"))
+		masterService.master(Role.FD).then().spec(responseSpec_OK()).body("message", equalTo("Success")).and()
+				.body("data", notNullValue()).and().body("data", hasKey("mst_oem")).and().body("$", hasKey("message"))
 				.body("data.mst_oem.size()", greaterThan(0)).and().body("data.mst_model.size()", greaterThan(0)).and()
 				.body("data.mst_oem.id", everyItem(greaterThan(0))).and()
 				.body(matchesJsonSchemaInClasspath("response-schema/MasterApiSchema.json"));
@@ -31,8 +38,7 @@ public class MasterApiTest {
 	@Test(description = "Verify if master api gives correct status code for the invalid token", groups = { "api",
 			"regression", "smoke", "negative" })
 	public void masterApi_InvalidToken_Test() throws IOException {
-		given().baseUri(getProperty("BASE_URI")).and().header("Authorization", "3425gdhsdbsj").and().log().all().when()
-				.post("/master").then().spec(responseSpec_TEXT(415));
+		masterService.masterWithInvalidToken().then().spec(responseSpec_TEXT(415));
 	}
 
 }
