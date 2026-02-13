@@ -11,7 +11,7 @@ public class ConfigManager {
 
 	private static Properties prop = new Properties();
 	private static String filePath;
-	private static String env;
+	public static String env;
 	private static final Logger LOGGER = LogManager.getLogger(ConfigManager.class);
 
 	private ConfigManager() {

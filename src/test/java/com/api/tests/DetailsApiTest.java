@@ -13,7 +13,16 @@ import org.testng.annotations.Test;
 import com.api.constants.Role;
 import com.api.request.model.Details;
 import com.api.services.DashboardService;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 @Listeners(com.listeners.ApiItestListener.class)
+@Epic("Job Management")
+@Feature("Dashboard details")
 public class DetailsApiTest {
 	private Details details;
 	private DashboardService dashboardService;
@@ -24,6 +33,9 @@ public class DetailsApiTest {
 		dashboardService = new DashboardService();
 	}
 
+	@Story("Dashboard details should be shown")
+	@Description("Verify if details api is working for user FD")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test(description = "Verify if details api is working for user FD", groups = { "api", "regression", "smoke" })
 	public void detailsApiTest() throws IOException {
 		dashboardService.details(Role.FD, details).then().spec(responseSpec_OK()).and()

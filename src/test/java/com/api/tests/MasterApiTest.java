@@ -17,7 +17,16 @@ import org.testng.annotations.Test;
 
 import com.api.constants.Role;
 import com.api.services.MasterService;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 @Listeners(com.listeners.ApiItestListener.class)
+@Epic("Job Management")
+@Feature("Dashboard details")
 public class MasterApiTest {
 
 	private MasterService masterService;
@@ -35,7 +44,10 @@ public class MasterApiTest {
 				.body("data.mst_oem.id", everyItem(greaterThan(0))).and()
 				.body(matchesJsonSchemaInClasspath("response-schema/MasterApiSchema.json"));
 	}
-
+	
+	@Story("Master api details should be returned")
+	@Description("Verify if master api gives correct status code for the invalid token")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test(description = "Verify if master api gives correct status code for the invalid token", groups = { "api",
 			"regression", "smoke", "negative" })
 	public void masterApi_InvalidToken_Test() throws IOException {
