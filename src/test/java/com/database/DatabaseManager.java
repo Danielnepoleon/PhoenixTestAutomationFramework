@@ -3,6 +3,9 @@ package com.database;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.utils.ConfigManager;
 import com.api.utils.EnvUtils;
 import com.api.utils.VaultDbConfig;
@@ -10,7 +13,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 public class DatabaseManager {
-
+	private static final Logger LOGGER = LogManager.getLogger(DatabaseManager.class);
 	private static boolean isVaultUp = true;
 	private static final String DB_URL = loadSecret("DB_URL");
 	private static final String DB_USERNAME = loadSecret("DB_USERNAME");
@@ -30,6 +33,7 @@ public class DatabaseManager {
 
 	private static void initializePool() throws SQLException {
 		if (hikariDataSource == null) {
+			LOGGER.info("Database connection is not available....creating hikari data source");
 			synchronized (DatabaseManager.class) {
 				if (hikariDataSource == null) {
 					hikariConfig = new HikariConfig();
@@ -43,6 +47,7 @@ public class DatabaseManager {
 					hikariConfig.setMaxLifetime(Integer.parseInt(MAXIMUM_LIFETIME_IN_SEC) * 1000);
 					hikariConfig.setPoolName(POOL_NAME);
 					hikariDataSource = new HikariDataSource(hikariConfig);
+					LOGGER.info("Hikari data source is created");
 				}
 			}
 
@@ -51,6 +56,7 @@ public class DatabaseManager {
 
 	public static Connection getConnection() throws SQLException {
 		if (hikariDataSource == null) {
+			LOGGER.info("Initializing the database connection using hikari data source");
 			initializePool();
 		} else if (hikariDataSource.isClosed()) {
 			throw new SQLException("Hikari Data source is closed");
@@ -67,13 +73,13 @@ public class DatabaseManager {
 			value = VaultDbConfig.getSecret(key);
 
 			if (value == null) {
-				System.err.println("Vault is down! or some isse with vault");
+				LOGGER.error("Vault is down! or some isse with vault");
 			} else {
-				System.out.println("Reading value from vault");
+				LOGGER.info("Reading value from vault");
 				return value;
 			}
 		}
-		System.out.println("Reading values from .env file");
+		LOGGER.info("Reading values from .env file....");
 		value = EnvUtils.getValue(key);
 		return value;
 

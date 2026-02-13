@@ -8,11 +8,13 @@ import static org.hamcrest.Matchers.notNullValue;
 import java.io.IOException;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.request.model.Usercredentials;
 import com.api.services.AuthService;
 
+@Listeners(com.listeners.ApiItestListener.class)
 public class LoginApiTest {
 	private Usercredentials credentials;
 	private AuthService authService;

@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.database.DatabaseManager;
 import com.database.model.CustomerAddressDBModel;
 
 public class CustomerAddressDao {
-
+	private static final Logger LOGGER = LogManager.getLogger(CustomerAddressDao.class);
 	private static final String CUSTOMER_ADDRESS_QUERY = """
 			SELECT id,
 			flat_number,
@@ -31,9 +34,11 @@ public class CustomerAddressDao {
 		ResultSet resultSet;
 		CustomerAddressDBModel customerAddressDBModel = null;
 		try {
+			LOGGER.info("Getting the db connection from database manager");
 			conn = DatabaseManager.getConnection();
 			statement = conn.prepareStatement(CUSTOMER_ADDRESS_QUERY);
 			statement.setInt(1, customerId);
+			LOGGER.info("Executing the sql query {} ...",CUSTOMER_ADDRESS_QUERY);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				customerAddressDBModel = new CustomerAddressDBModel(resultSet.getInt("id"),
@@ -43,8 +48,7 @@ public class CustomerAddressDao {
 						resultSet.getString("state"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Cannot convert resultset to a  model class",e);
 		}
 		return customerAddressDBModel;
 	}

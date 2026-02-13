@@ -1,0 +1,79 @@
+2026-02-12 20:55:14,261 [main] [33m WARN[m org.testng.xml.TestNGContentHandler::warn():133 - It is strongly recommended to add "<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd" >" at the top of the suite file [D:\Eclipse_Workspace\SDET With Jatin\PhoenixTestAutomationFramework\testng.xml] otherwise TestNG may fail or not work as expected.
+2026-02-12 20:55:14,743 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [TestNG] Running:
+  D:\Eclipse_Workspace\SDET With Jatin\PhoenixTestAutomationFramework\testng.xml
+
+2026-02-12 20:55:14,988 [main] [32m INFO[m com.api.services.AuthService::login():19 - Making login reuest for the payload iamfd
+2026-02-12 20:55:16,838 [main] [32m INFO[m com.api.utils.ConfigManager::<clinit>():30 - Reading the env value passed from the terminal
+2026-02-12 20:55:16,841 [main] [33m WARN[m com.api.utils.ConfigManager::<clinit>():32 - Env variable is not set...using qa as the environment
+2026-02-12 20:55:16,842 [main] [32m INFO[m com.api.utils.ConfigManager::<clinit>():36 - Running the test in qa env
+2026-02-12 20:55:16,843 [main] [32m INFO[m com.api.utils.ConfigManager::<clinit>():46 - Running the test in qa env
+2026-02-12 20:55:16,845 [main] [32m INFO[m com.api.utils.ConfigManager::<clinit>():54 - File config/config.qa.properties is loaded
+2026-02-12 20:55:20,838 [main] [32m INFO[m com.api.services.UserService::user():19 - Making reuest to user details api userdetails for the role FD
+2026-02-12 20:55:20,848 [main] [32m INFO[m com.api.utils.AuthTokenGenerator::getToken():30 - Checking if token is present for FD
+2026-02-12 20:55:20,848 [main] [32m INFO[m com.api.utils.AuthTokenGenerator::getToken():35 - Token not found, making login request for FD
+2026-02-12 20:55:21,828 [main] [32m INFO[m com.api.utils.AuthTokenGenerator::getToken():52 - Token cached for FD for future request
+2026-02-12 20:55:22,569 [main] [32m INFO[m com.api.services.DashboardService::count():22 - Making reuest to count api /dashboard/count for the role FD
+2026-02-12 20:55:22,572 [main] [32m INFO[m com.api.utils.AuthTokenGenerator::getToken():30 - Checking if token is present for FD
+2026-02-12 20:55:22,573 [main] [32m INFO[m com.api.utils.AuthTokenGenerator::getToken():32 - Token found for FD
+2026-02-12 20:55:23,087 [main] [32m INFO[m com.api.services.DashboardService::countWithoutToken():27 - Making reuest to count api /dashboard/count with no auth token
+2026-02-12 20:55:23,620 [main] [32m INFO[m com.api.services.MasterService::master():20 - Making reuest to master api /master for the role FD
+2026-02-12 20:55:23,621 [main] [32m INFO[m com.api.utils.AuthTokenGenerator::getToken():30 - Checking if token is present for FD
+2026-02-12 20:55:23,622 [main] [32m INFO[m com.api.utils.AuthTokenGenerator::getToken():32 - Token found for FD
+2026-02-12 20:55:24,573 [main] [32m INFO[m com.api.services.MasterService::masterWithInvalidToken():25 - Making reuest to master api /master with invalid auth token
+2026-02-12 20:55:24,854 [main] [32m INFO[m com.api.services.JobService::createJob():21 - Making reuest to create job api /job/create for the role FD
+2026-02-12 20:55:24,859 [main] [32m INFO[m com.api.utils.AuthTokenGenerator::getToken():30 - Checking if token is present for FD
+2026-02-12 20:55:24,860 [main] [32m INFO[m com.api.utils.AuthTokenGenerator::getToken():32 - Token found for FD
+2026-02-13 11:29:51,135 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,147 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 3 ms.
+2026-02-13 11:29:51,154 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,154 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,155 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,155 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,155 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,157 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,172 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,173 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,173 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,174 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,174 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,175 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,175 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,176 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,189 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 7 ms.
+2026-02-13 11:29:51,212 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 22 ms.
+2026-02-13 11:29:51,213 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,213 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,217 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,217 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,217 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,217 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,221 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,222 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,223 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,224 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,224 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+2026-02-13 11:29:51,224 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+2026-02-13 11:29:51,235 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [TestNG] Running:
+  C:\Users\VP WEB WORLD\AppData\Local\Temp\testng-eclipse-1510209934\testng-customsuite.xml
+
+2026-02-13 11:29:51,262 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [Utils] DynamicGraphHelper.createDynamicGraph() took 8 ms.
+2026-02-13 11:29:51,321 [main] [32m INFO[m com.listeners.ApiItestListener::onTestStart():19 - *******************************************************************************************
+2026-02-13 11:29:51,321 [main] [32m INFO[m com.listeners.ApiItestListener::onTestStart():20 - ~~~~~~~~~~~~~ loginApiTest - Test started ~~~~~~~~~~~~~
+2026-02-13 11:29:51,322 [main] [32m INFO[m com.listeners.ApiItestListener::onTestStart():21 - ~~~~~~~~~~~~~ Test class details : [TestClass name=class com.api.tests.LoginApiTest] ~~~~~~~~~~~~~
+2026-02-13 11:29:51,322 [main] [32m INFO[m com.listeners.ApiItestListener::onTestStart():22 - ~~~~~~~~~~~~~ Test description : Verify if login api is working for user FD ~~~~~~~~~~~~~
+2026-02-13 11:29:51,322 [main] [32m INFO[m com.listeners.ApiItestListener::onTestStart():23 - ~~~~~~~~~~~~~ Test group details : [regression, smoke, api] ~~~~~~~~~~~~~
+2026-02-13 11:29:51,328 [main] [32m INFO[m com.api.services.AuthService::login():19 - Making login reuest for the payload iamfd
+2026-02-13 11:29:52,030 [main] [32m INFO[m com.api.utils.ConfigManager::<clinit>():30 - Reading the env value passed from the terminal
+2026-02-13 11:29:52,030 [main] [33m WARN[m com.api.utils.ConfigManager::<clinit>():32 - Env variable is not set...using qa as the environment
+2026-02-13 11:29:52,030 [main] [32m INFO[m com.api.utils.ConfigManager::<clinit>():36 - Running the test in qa env
+2026-02-13 11:29:52,031 [main] [32m INFO[m com.api.utils.ConfigManager::<clinit>():46 - Running the test in qa env
+2026-02-13 11:29:52,055 [main] [32m INFO[m com.api.utils.ConfigManager::<clinit>():54 - File config/config.qa.properties is loaded
+2026-02-13 11:29:55,784 [main] [32m INFO[m com.listeners.ApiItestListener::onTestSuccess():30 - ~~~~~~~~~~~~~ Test duration : 4459 ms ~~~~~~~~~~~~~
+2026-02-13 11:29:55,784 [main] [32m INFO[m com.listeners.ApiItestListener::onTestSuccess():31 - ~~~~~~~~~~~~~ loginApiTest - Test Passed ! ~~~~~~~~~~~~~
+2026-02-13 11:29:55,785 [main] [32m INFO[m com.listeners.ApiItestListener::onTestSuccess():32 - *******************************************************************************************
+2026-02-13 11:29:55,922 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [TestNG] Time taken by org.testng.reporters.jq.Main@762405bf: 81 ms
+2026-02-13 11:29:55,924 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [TestNG] Time taken by org.testng.reporters.FailedReporter@113eed88: 2 ms
+2026-02-13 11:29:55,948 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [TestNG] Time taken by org.testng.reporters.XMLReporter@21a6a494: 22 ms
+2026-02-13 11:29:55,987 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@37a67cf: 38 ms
+2026-02-13 11:29:55,997 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@5e0f2c82: 10 ms
+2026-02-13 11:29:55,998 [main] [32m INFO[m org.testng.internal.Utils::info():112 - [TestNG] Time taken by org.testng.internal.ExitCodeListener@98637a2: 0 ms
