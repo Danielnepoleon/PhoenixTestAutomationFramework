@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constants.Models;
@@ -31,7 +32,7 @@ import com.api.responsemodel.CreateJobResponseModel;
 import com.api.services.JobService;
 
 import io.restassured.response.Response;
-
+@Listeners(com.listeners.ApiItestListener.class)
 public class CreateJobApiTestWithResponseModelValidation {
 
 	private CreateJobPayload createJobPayload;
