@@ -14,7 +14,16 @@ import org.testng.annotations.Test;
 import com.api.request.model.Usercredentials;
 import com.api.services.AuthService;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 @Listeners(com.listeners.ApiItestListener.class)
+@Epic("User Management")
+@Feature("Authentication")
 public class LoginApiTest {
 	private Usercredentials credentials;
 	private AuthService authService;
@@ -24,7 +33,10 @@ public class LoginApiTest {
 		credentials = new Usercredentials("iamfd", "password");
 		authService = new AuthService();
 	}
-
+	
+	@Story("User should be able to login to phoenix application")
+	@Description("Verify if login api is working for user FD")
+	@Severity(SeverityLevel.BLOCKER)
 	@Test(description = "Verify if login api is working for user FD", groups = { "api", "regression", "smoke" })
 	public void loginApiTest() throws IOException {
 		authService.login(credentials).then().spec(responseSpec_OK()).and()
