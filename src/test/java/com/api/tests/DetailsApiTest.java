@@ -7,12 +7,13 @@ import static org.hamcrest.Matchers.notNullValue;
 import java.io.IOException;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
 import com.api.request.model.Details;
 import com.api.services.DashboardService;
-
+@Listeners(com.listeners.ApiItestListener.class)
 public class DetailsApiTest {
 	private Details details;
 	private DashboardService dashboardService;
