@@ -7,11 +7,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.database.DatabaseManager;
 import com.dataproviders.api.bean.CreateJobBean;
 
 public class CreateJobApiPayloadDataDao {
-	private static final String SQL_QUERY = """
+	private static final Logger LOGGER = LogManager.getLogger(CreateJobApiPayloadDataDao.class);
+	private static final String CreateJobPayload_QUERY = """
 						select tc.first_name,
 			tc.last_name,
 			tc.email_id,
@@ -53,9 +57,11 @@ public class CreateJobApiPayloadDataDao {
 		CreateJobBean bean = new CreateJobBean();
 		List<CreateJobBean> beanList = new ArrayList<CreateJobBean>();
 		try {
+			LOGGER.info("Getting the db connection from database manager");
 			conn = DatabaseManager.getConnection();
 			statement = conn.createStatement();
-			resultSet = statement.executeQuery(SQL_QUERY);
+			LOGGER.info("Executing the sql query {} ...",CreateJobPayload_QUERY);
+			resultSet = statement.executeQuery(CreateJobPayload_QUERY);
 			while (resultSet.next()) {
 				bean.setCustomer__first_name(resultSet.getString("first_name"));
 				bean.setCustomer__last_name(resultSet.getString("last_name"));
@@ -87,8 +93,7 @@ public class CreateJobApiPayloadDataDao {
 				beanList.add(bean);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Cannot convert resultset to a bean ",e);
 		}
 		return beanList;
 

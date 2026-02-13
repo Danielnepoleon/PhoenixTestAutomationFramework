@@ -3,6 +3,9 @@ package com.api.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
@@ -12,10 +15,13 @@ import com.dataproviders.api.bean.CreateJobBean;
 
 public class CreateJobBeanMapper {
 
+	private static final Logger LOGGER = LogManager.getLogger(CreateJobBeanMapper.class);
+
 	private CreateJobBeanMapper() {
 	}
 
 	public static CreateJobPayload mapper(CreateJobBean bean) {
+		LOGGER.info("Converting create job bean {} to create job payload", bean);
 		int mst_service_location_id = Integer.parseInt(bean.getMst_service_location_id());
 		int mst_platform_id = Integer.parseInt(bean.getMst_platform_id());
 		int mst_oem_id = Integer.parseInt(bean.getMst_oem_id());
@@ -26,9 +32,8 @@ public class CreateJobBeanMapper {
 		int pincode = Integer.parseInt(bean.getCustomer_address__pincode());
 		CustomerAddress customer_address = new CustomerAddress(bean.getCustomer_address__flat_number(),
 				bean.getCustomer_address__apartment_name(), bean.getCustomer_address__street_name(),
-				bean.getCustomer_address__landmark(), bean.getCustomer_address__area(),
-				pincode, bean.getCustomer_address__country(),
-				bean.getCustomer_address__state());
+				bean.getCustomer_address__landmark(), bean.getCustomer_address__area(), pincode,
+				bean.getCustomer_address__country(), bean.getCustomer_address__state());
 		int productId = Integer.parseInt(bean.getCustomer_product__product_id());
 		int modelId = Integer.parseInt(bean.getCustomer_product__mst_model_id());
 		CustomerProduct customerProduct = new CustomerProduct(bean.getCustomer_product__dop(),
@@ -40,7 +45,7 @@ public class CreateJobBeanMapper {
 		problemList.add(problems);
 		CreateJobPayload payload = new CreateJobPayload(mst_service_location_id, mst_platform_id,
 				mst_warrenty_status_id, mst_oem_id, customer, customer_address, customerProduct, problemList);
-
+		LOGGER.info("Converted create job bean to create job payload {}", payload);
 		return payload;
 
 	}

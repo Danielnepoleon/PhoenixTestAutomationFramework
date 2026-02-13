@@ -9,6 +9,9 @@ import static io.restassured.RestAssured.given;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.constants.Role;
 import com.api.request.model.Usercredentials;
 
@@ -16,16 +19,20 @@ import io.restassured.http.ContentType;
 
 public class AuthTokenGenerator {
 
-	private static Map<Role , String> tokenCache = new ConcurrentHashMap<Role , String>();
+	private static Map<Role, String> tokenCache = new ConcurrentHashMap<Role, String>();
+	private static final Logger LOGGER = LogManager.getLogger(AuthTokenGenerator.class);
+
 	private AuthTokenGenerator() {
 
 	}
 
 	public static String getToken(Role role) {
-		
-		if(tokenCache.containsKey(role)) {
+		LOGGER.info("Checking if token is present for {}", role);
+		if (tokenCache.containsKey(role)) {
+			LOGGER.info("Token found for {}", role);
 			return tokenCache.get(role);
 		}
+		LOGGER.info("Token not found, making login request for {}", role);
 		Usercredentials credentials = null;
 		if (role == FD) {
 			credentials = new Usercredentials("iamfd", "password");
@@ -42,6 +49,7 @@ public class AuthTokenGenerator {
 				.when().post("login").then().log().ifValidationFails().statusCode(200).extract().jsonPath()
 				.getString("data.token");
 		tokenCache.put(role, token);
+		LOGGER.info("Token cached for {} for future request", role);
 		return token;
 
 	}

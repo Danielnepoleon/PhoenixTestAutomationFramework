@@ -25,7 +25,7 @@ public class DetailsApiTest {
 
 	@Test(description = "Verify if details api is working for user FD", groups = { "api", "regression", "smoke" })
 	public void detailsApiTest() throws IOException {
-		dashboardService.details(Role.FD, details).then().log().all().spec(responseSpec_OK()).and()
+		dashboardService.details(Role.FD, details).then().spec(responseSpec_OK()).and()
 				.body("message", equalTo("Success")).and().body("data.message", notNullValue());
 	}
 

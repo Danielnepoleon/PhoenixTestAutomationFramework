@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.database.DatabaseManager;
 import com.database.model.CustomerProductDBModel;
 
 public class CustomerProductDao {
-
+	private static final Logger LOGGER = LogManager.getLogger(CustomerProductDao.class);
 	private static final String CUSTOMER_PRODUCT_QUERY = """
 			SELECT mst_model_id, dop, popurl,imei1, imei2, serial_number FROM tr_customer_product tcp WHERE tcp.tr_customer_id =?;
 			""";
@@ -23,9 +26,11 @@ public class CustomerProductDao {
 		ResultSet resultSet;
 		CustomerProductDBModel customerProductDBModel;
 		try {
+			LOGGER.info("Getting the db connection from database manager");
 			conn = DatabaseManager.getConnection();
 			statement = conn.prepareStatement(CUSTOMER_PRODUCT_QUERY);
 			statement.setInt(1, customerId);
+			LOGGER.info("Executing the sql query {} ...", CUSTOMER_PRODUCT_QUERY);
 			resultSet = statement.executeQuery(CUSTOMER_PRODUCT_QUERY);
 			while (resultSet.next()) {
 				customerProductDBModel = new CustomerProductDBModel(resultSet.getInt("mst_model_id"),
@@ -34,8 +39,7 @@ public class CustomerProductDao {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Cannot convert resultset to a model class ", e);
 		}
 		return null;
 	}
