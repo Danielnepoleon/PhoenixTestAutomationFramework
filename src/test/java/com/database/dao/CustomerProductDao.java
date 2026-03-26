@@ -24,7 +24,7 @@ public class CustomerProductDao {
 		Connection conn;
 		PreparedStatement statement;
 		ResultSet resultSet;
-		CustomerProductDBModel customerProductDBModel;
+		CustomerProductDBModel customerProductDBModel=null;
 		try {
 			LOGGER.info("Getting the db connection from database manager");
 			conn = DatabaseManager.getConnection();
@@ -41,7 +41,7 @@ public class CustomerProductDao {
 		} catch (SQLException e) {
 			LOGGER.error("Cannot convert resultset to a model class ", e);
 		}
-		return null;
+		return customerProductDBModel;
 	}
 
 }
