@@ -1,0 +1,8 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"Job Management","Create job api","Create job api should create a job","0","0","1","0","0"
+"Job Management","Job count details","","0","0","1","0","0"
+"Job Management","Dashboard details","Master api details should be returned","0","0","1","0","0"
+"Job Management","Job count details","Job details count should be shown","0","0","1","0","0"
+"User Management","Authentication","User should be able to login to phoenix application","1","0","0","0","0"
+"Job Management","Dashboard details","","0","0","1","0","0"
+"User Management","User Details","User details should be shown","0","0","1","0","0"
